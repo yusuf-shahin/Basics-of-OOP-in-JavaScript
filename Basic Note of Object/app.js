@@ -37,10 +37,7 @@ const mySelf = {
 //? hold the value of crush :-
 // console.log(mySelf.returnCrush("javascript"));
 
-//! ============
-//? create a varible
-//! ============
-
+//* create a varible
 const name = "yusuf";
 const age = [
   {
@@ -58,10 +55,7 @@ const currentAddress = {
 };
 const homeDistrict = "noakhali";
 
-// ============
-// addEverything in obj
-// ============
-
+//* addEverything in obj
 const myBio = {
   //// every varible hold value inside it
   name,
@@ -72,10 +66,7 @@ const myBio = {
 
 // console.log(myBio);
 
-//! ============
-//? destructering obj
-//! ============
-
+//* destructering obj
 // const pickAge = myBio.age[0];
 // const {myAge,nazAge} = pickAge
 // const {
@@ -85,8 +76,7 @@ const myBio = {
 //   currentAddress : {river : { fRev :p , sRev:m } }
 // } = myBio
 
-//* console those thing
-
+//? console those thing
 // console.log(myBio);
 // console.log(thana, district);
 // console.log(myAge, nazAge);
@@ -97,15 +87,16 @@ const myBio = {
 //!==============
 
 //! What is this ?
+//? "this" keyword always refers to an object. The thing about it is that the object it refers to will vary depending on how and where this is being called.
+
 //? In gloval this === window
+
+//! https://www.freecodecamp.org/news/the-this-keyword-in-javascript/
 
 function showThis() {
   console.log(this);
 }
-// showThis()
-
-//* inside showThis func we console this . when we invoke showThis() it"s refer the global
-// showThis();
+// showThis() // --> window
 
 function outsideShow() {
   function insideShow() {
@@ -115,7 +106,7 @@ function outsideShow() {
 }
 
 //* same this is happen in here
-// outsideShow();
+// outsideShow(); // --> window
 
 //!==============
 //? this in object
@@ -123,12 +114,11 @@ function outsideShow() {
 
 //? What happen when we create showThis() func inside a obj.
 
-const john = {
+const johnObj = {
   name: "jhon",
   age: 35,
   address: "san fransisco",
   friend: ["bob", "anna", "susi"],
-  // showThis: showThis,
 
   //* same thing
   showThis: function () {
@@ -136,14 +126,12 @@ const john = {
   },
 };
 
-// john.showThis();
+// johnObj.showThis(); --> johnObj
 
 const yusuf = {
   fname: "Yusuf",
   lname: "Shahin",
   fullName: function () {
-    console.log(this);
-
     console.log("My full name is Yusuf Shahin");
   },
 };
@@ -181,9 +169,7 @@ function returnObj(name, age, year) {
 }
 
 // console.log(returnObj("snigdha", 17, 2024));
-
-//* showthis function directly indicate the obj...
-// john.showThis();
+const snigdha = returnObj("snigdha", 17, 2024);
 
 let user = {
   name: "John",
@@ -193,6 +179,7 @@ let user = {
   },
 };
 
+//* add property outside of object
 // user.sayHi = function () {
 //   console.log("hello world outside");
 // };
@@ -227,17 +214,21 @@ function progLang(language, library, framwork) {
 
 // console.log(progLang("javascript", "react", "next"));
 
+//* store the value of func insid a obj :-
 const javascript = progLang("javascript", "react", "next");
 // console.log(javascript);
 
 //* same thing write in two way :-
+//! if store func inside a obj :-
 // javascript.fullStack();
+//! if dont store the func inside a obj :-
 // progLang("javascript", "react", "next").fullStack();
 
 //!==============
 //? constructor function
 //!==============
-//* A constructor function is a special type of function in programming that is used to create objects. It is typically used in object-oriented programming languages like JavaScript. The purpose of a constructor function is to set the initial values or properties of an object when it is created.
+
+//? A constructor function is a special type of function in programming that is used to create objects. It is typically used in object-oriented programming languages like JavaScript. The purpose of a constructor function is to set the initial values or properties of an object when it is created.
 
 //? Same thing using constructer func
 
@@ -257,12 +248,13 @@ function ProgLang(language, framwork) {
 //! https://www.freecodecamp.org/news/demystifying-javascripts-new-keyword-874df126184c/
 
 //# new - create a new object , point to it, omit return
+//? "new" keyword is responsible for invoking the constructor and creating a unique instance every single time. It also takecare of "this" keyword. because except obj, we previously see, "this" keyword always refers the window .
 
 // console.log(ProgLang);
 
 const python = new ProgLang("Python", "Django");
 //# in the prototype we find the constructor
-console.log(python);
+// console.log(python);
 
 // python.fullStack();
 
@@ -275,11 +267,12 @@ console.log(python);
 //!==============
 // https://javascript.info/constructor-new
 
-//* All Objects in Javascript have access to constructor property that returns a constructor function that created it.
-//* built in constructor functions
-//* arrays and functions are objects in javascript
+//? All Objects in Javascript have access to constructor property that returns a constructor function that created it.
+//? built in constructor functions
+//? arrays and functions are objects in javascript
 
-function Person(firstName, lastName) {
+//* annonymous function aslo use to create a constructor function :-
+const Person = function (firstName, lastName) {
   this.firstName = firstName;
   this.lastName = lastName;
   this.fullName = function () {
@@ -287,10 +280,12 @@ function Person(firstName, lastName) {
       `My full name is ${this.firstName} ${this.lastName} and I love C++`
     );
   };
-}
+};
+//// Note :- Arrow functions in JavaScript are not suitable for use as constructor functions. This is because arrow functions do not have their own this context, which is essential for a constructor function.
 
-// const jonny = new Person("jonny", "sanders");
+const jonny = new Person("jonny", "sanders");
 // console.log(jonny);
+jonny.fullName();
 
 //# everything add in constructor
 // console.log(jonny.constructor);
