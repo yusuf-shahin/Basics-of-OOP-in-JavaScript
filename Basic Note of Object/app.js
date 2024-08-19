@@ -214,14 +214,14 @@ function progLang(language, library, framwork) {
 
 // console.log(progLang("javascript", "react", "next"));
 
-//* store the value of func insid a obj :-
+//* store the value of func insid a varible :-
 const javascript = progLang("javascript", "react", "next");
 // console.log(javascript);
 
 //* same thing write in two way :-
-//! if store func inside a obj :-
+//# if store func inside a obj :-
 // javascript.fullStack();
-//! if dont store the func inside a obj :-
+//# if dont store the func inside a obj :-
 // progLang("javascript", "react", "next").fullStack();
 
 //!==============
@@ -230,28 +230,29 @@ const javascript = progLang("javascript", "react", "next");
 
 //? A constructor function is a special type of function in programming that is used to create objects. It is typically used in object-oriented programming languages like JavaScript. The purpose of a constructor function is to set the initial values or properties of an object when it is created.
 
-//? Same thing using constructer func
+//* Same thing using constructer func
 
-//// https://www.freecodecamp.org/news/snake-case-vs-camel-case-vs-pascal-case-vs-kebab-case-whats-the-difference/
+//! https://www.freecodecamp.org/news/snake-case-vs-camel-case-vs-pascal-case-vs-kebab-case-whats-the-difference/
 
 //* In conster function we dont return a object and always use pascal case when create the func
 function ProgLang(language, framwork) {
-  this.language = language;
-  this.framwork = framwork;
+  this.lang = language;
+  this.fram = framwork;
   this.fullStack = function () {
-    console.log(`${this.framwork} is the framwork of ${this.language}`);
+    console.log(`${this.fram} is the framwork of ${this.lang}`);
   };
+  //# for new key word this always point to the object
   // console.log(this);
 }
 
 //? in constructer we must use new keyword... what is new key word
 //! https://www.freecodecamp.org/news/demystifying-javascripts-new-keyword-874df126184c/
 
-//# new - create a new object , point to it, omit return
-//? "new" keyword is responsible for invoking the constructor and creating a unique instance every single time. It also takecare of "this" keyword. because except obj, we previously see, "this" keyword always refers the window .
+//// "new" keyword is responsible for invoking the constructor and creating a unique instance every single time. It also takecare of "this" keyword. because except obj, we previously see, "this" keyword always refers the window .
 
+//? "new" keyword - create a new object --> point to it --> omit return.
 // console.log(ProgLang);
-
+//* store the value of func insid a varible same as "factory-func" :-
 const python = new ProgLang("Python", "Django");
 //# in the prototype we find the constructor
 // console.log(python);
@@ -284,19 +285,19 @@ const Person = function (firstName, lastName) {
 //// Note :- Arrow functions in JavaScript are not suitable for use as constructor functions. This is because arrow functions do not have their own this context, which is essential for a constructor function.
 
 const jonny = new Person("jonny", "sanders");
-// console.log(jonny);
-jonny.fullName();
 
 //# everything add in constructor
 // console.log(jonny.constructor);
 // jonny.fullName();
 
-// const bob = {};
-// console.log(bob.constructor);
+//* different constructer property
+const bobo = {};
+// console.log(bobo.constructor);
 // const lists = [];
 // console.log(lists.constructor);
 // const sayHi = function () {};
 // console.log(sayHi.constructor);
+//# The constructor property returns the function that created the Object prototype.
 
 //* same thing on different way :-
 // const susy = new jonny.constructor("susy", "carpenter");
@@ -313,10 +314,19 @@ Javascript uses prototypal inheritance model. That means that every constructor 
 function Account(name, initialBalance) {
   this.name = name;
   this.balance = initialBalance;
+
+  //# pest this deposit into  -->  Account.prototype.deposit
+  // this.deposit = function (amount) {
+  //   this.balance += amount;
+  //   console.log(`Hello ${this.name}, your balance is ${this.balance}`);
+  // };
 }
 
 const dohn = new Account("dohn", 200);
 const boby = new Account("boby", 0);
+
+//* setup own prototype :-
+console.log(Account.prototype);
 
 Account.prototype.bank = "CHASE";
 Account.prototype.deposit = function (amount) {
@@ -324,10 +334,10 @@ Account.prototype.deposit = function (amount) {
   console.log(`Hello ${this.name}, your balance is ${this.balance}`);
 };
 console.log(dohn);
+//- console.log(dohn.bank);
+//- console.log(boby);
 
-console.log(dohn.bank);
-console.log(boby);
-
+//* deposide is a method
 dohn.deposit(300);
 boby.deposit(1000);
 
